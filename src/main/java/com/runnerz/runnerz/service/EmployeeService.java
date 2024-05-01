@@ -9,4 +9,6 @@ public interface EmployeeService {
     Employee saveEmployee(Employee emp);
     List<Employee> getAllEmployees();
     Employee getEmployeeById(UUID id);
+    Employee updatEmployeeById(Employee emp, UUID id);
+    String deleteEmployee(UUID id);
 }
