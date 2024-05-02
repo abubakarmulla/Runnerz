@@ -24,10 +24,9 @@ public class Employee {
     // private UUID id;
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.UUID)
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "emp_id",columnDefinition = "VARCHAR(100)")
+    @Column(name = "emp_id")
     private UUID id;
 
     @Column(name = "fname")

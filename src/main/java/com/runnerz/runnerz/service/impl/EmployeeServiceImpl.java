@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.runnerz.runnerz.exception.DuplicateResourceException;
 import com.runnerz.runnerz.exception.ResourceNotFoundException;
 import com.runnerz.runnerz.model.Employee;
 import com.runnerz.runnerz.repository.EmployeeRepository;
@@ -20,7 +21,12 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee saveEmployee(Employee emp) {
-        return employeeRepository.save(emp);
+        if (employeeRepository.existsByEmail(emp.getEmail())){
+            throw new DuplicateResourceException("Email", "email", emp.getEmail());
+        }
+        else{
+            return employeeRepository.save(emp);
+        }
     }
 
     @Override
